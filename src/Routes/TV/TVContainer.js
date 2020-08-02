@@ -1,22 +1,22 @@
 import React from "react";
-import HomePresenter from "./HomePresenter";
+import TVPresenter from "./TVPresenter";
 
 export default class extends React.Component {
   state = {
-    nowPlaying: null,
-    upcoming: null,
+    topRated: null,
     popular: null,
+    airingToday: null,
     loading: true,
     error: null
   };
 
   render() {
-    const { nowPlaying, upcoming, popular, loading, error } = this.state;
+    const { topRated, popular, airingToday, loading, error } = this.state;
     return (
-      <HomePresenter
-        nowPlaying={nowPlaying}
-        upcoming={upcoming}
+      <TVPresenter
+        topRated={topRated}
         popular={popular}
+        airingToday={airingToday}
         loading={loading}
         error={error}
       />
