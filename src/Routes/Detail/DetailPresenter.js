@@ -110,6 +110,19 @@ const DetailPresenter = ({ result, loading, error }) =>
                     : `${genre.name} / `
                 )}
             </Info>
+            {result.vote_average ? (
+              <>
+                <Divider>·</Divider>
+                <Info>
+                  <span role="img" aria-label="rating">
+                    ⭐️
+                  </span>
+                </Info>
+                {result.vote_average}/10
+              </>
+            ) : (
+              ""
+            )}
           </InfoContainer>
           <Overview>{result.overview && result.overview}</Overview>
         </Data>
