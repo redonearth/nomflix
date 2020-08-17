@@ -82,73 +82,73 @@ const DetailPresenter = ({ result, loading, error }) =>
   ) : error ? (
     <Message />
   ) : (
-        <Container>
-          <Helmet>
-            <title>
-              {result.original_title ? result.original_title : result.original_name}{" "}
+    <Container>
+      <Helmet>
+        <title>
+          {result.original_title ? result.original_title : result.original_name}{" "}
           | Nomflix
         </title>
-          </Helmet>
-          <Backdrop
-            bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
-          />
-          <Content>
-            <Cover
-              bgImage={
-                result.poster_path
-                  ? `https://image.tmdb.org/t/p/original${result.poster_path}`
-                  : require("../../assets/noPosterSmall.png")
-              }
-            />
-            <Data>
-              <Title>
-                {result.original_title
-                  ? result.original_title
-                  : result.original_name}
-              </Title>
-              <InfoContainer>
-                <Info>
-                  {result.release_date
-                    ? result.release_date.substring(0, 4)
-                    : result.first_air_date.substring(0, 4)}
-                </Info>
-                <Divider>·</Divider>
-                <Info>
-                  {result.runtime ? result.runtime : result.episode_run_time} min
+      </Helmet>
+      <Backdrop
+        bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
+      />
+      <Content>
+        <Cover
+          bgImage={
+            result.poster_path
+              ? `https://image.tmdb.org/t/p/original${result.poster_path}`
+              : require("../../assets/noPosterSmall.png")
+          }
+        />
+        <Data>
+          <Title>
+            {result.original_title
+              ? result.original_title
+              : result.original_name}
+          </Title>
+          <InfoContainer>
+            <Info>
+              {result.release_date
+                ? result.release_date.substring(0, 4)
+                : result.first_air_date.substring(0, 4)}
             </Info>
+            <Divider>·</Divider>
+            <Info>
+              {result.runtime ? result.runtime : result.episode_run_time} min
+            </Info>
+            <Divider>·</Divider>
+            <Info>
+              {result.genres &&
+                result.genres.map((genre, index) =>
+                  index === result.genres.length - 1
+                    ? genre.name
+                    : `${genre.name} / `
+                )}
+            </Info>
+            {result.vote_average ? (
+              <>
                 <Divider>·</Divider>
                 <Info>
-                  {result.genres &&
-                    result.genres.map((genre, index) =>
-                      index === result.genres.length - 1
-                        ? genre.name
-                        : `${genre.name} / `
-                    )}
-                </Info>
-                {result.vote_average ? (
-                  <>
-                    <Divider>·</Divider>
-                    <Info>
-                      <span role="img" aria-label="rating">
-                        ⭐️
+                  <span role="img" aria-label="rating">
+                    ⭐️
                   </span>
-                    </Info>
-                    {result.vote_average}/10
+                </Info>
+                {result.vote_average}/10
               </>
-                ) : (
-                    ""
-                  )}
-              </InfoContainer>
-              <Overview>{result.overview && result.overview}</Overview>
-            </Data>
-          </Content>
-        </Container>
-      );
+            ) : (
+              ""
+            )}
+          </InfoContainer>
+          <Overview>{result.overview && result.overview}</Overview>
+        </Data>
+      </Content>
+    </Container>
+  );
 
 DetailPresenter.propTypes = {
   result: PropTypes.object,
   loading: PropTypes.bool.isRequired,
-  error: PropTypes.string
+  error: PropTypes.string,
 };
 
 export default DetailPresenter;
